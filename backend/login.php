@@ -11,11 +11,13 @@ if(isset($_POST['submit']) && $_SERVER['REQUEST_METHOD'] == "POST"){
 	$username = $conn->real_escape_string($_POST['username']);
   $password = $conn->real_escape_string($_POST['password']);
 	$password_hash = password_hash($conn->real_escape_string($_POST['password']), PASSWORD_BCRYPT, array('cost'=>12));
+
   	$sql = "SELECT password, user_rights FROM users WHERE username = '$username'";
   	$result = $conn->query($sql);
     $row = $result->fetch_assoc();
     if(password_verify($password, $row['password'])){
   		$_SESSION['username'] = $username;
+		$_SESSION['user_rights'] = 2;
   		header('Location: admin.php');
   	}else{
   		$error = "Username or password incorrect.";
