@@ -24,6 +24,17 @@ function confDelete(id){
 
 }
 
+function confDelete(id){
+	var conf = confirm('Weet je zeker dat je de Ticket wilt verweideren?');
+	if(conf){
+		window.location.href= 'ticket.php?delete=true&id='+id;
+	}else{
+		
+		window.location.href= 'ticket.php?delete=false&id='+id;
+	}
+
+}
+
 function confRestore(id){
 	var conf = confirm('Weet je zeker dat je de gebruiker wilt herstellen?');
 	if(conf){
